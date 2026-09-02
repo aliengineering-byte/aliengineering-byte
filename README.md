@@ -19,6 +19,8 @@ happy path but its recovery behavior is unknown.
 The tools exchange versioned files or invoke released CLIs at process boundaries; none requires the
 rest of the portfolio. The smoke repository is intentionally not a user-facing product.
 
+[See the scored front-door decision, positioning records, and public claim/evidence matrix.](PORTFOLIO_EVIDENCE.md)
+
 ## Five-minute flagship proof
 
 With Node.js 22 or 24:
