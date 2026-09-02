@@ -46,18 +46,27 @@ independent downstream proof fixture, not a sixth product.
 
 ## Serious alternatives and boundaries
 
-- MCP conformance tests protocol behavior; MCP record/replay tools preserve conversations.
-  ResiliReplay's narrower wedge is injected recovery plus duplicate-effect evidence and regression
-  generation. These categories complement rather than replace each other.
-- SciPy brackets scalar roots, while property-based testing searches input examples. PhaseProbe's
-  contract is a declared qualitative predicate over a simulation plus a replayable pytest artifact.
-- Editor checkpoints and Git already undo changes. AgentTX's boundary is a tool-independent,
-  inspectable transaction around an arbitrary coding-agent command; it cannot undo external writes.
-- Self-Refine, CRITIC, self-consistency, and adaptive-compute research establish substantial prior
-  art. Verifaxis therefore positions typed evidence, matched accounting, and stopping diagnostics as
-  an experimental runtime/benchmark rather than a new correction principle.
-- Semantic routers, RouteLLM, and MCP gateways cover intent, model economics, proxying, and broad
-  operations. GaugeMesh stays narrow around deterministic selection and fail-closed conservation of
-  declared constraints.
+- [Official MCP conformance](https://github.com/modelcontextprotocol/conformance) tests protocol
+  behavior; [mcprec](https://github.com/erphq/mcprec) preserves MCP conversations. ResiliReplay's
+  narrower wedge is injected recovery plus duplicate-effect evidence and regression generation.
+  These categories complement rather than replace each other.
+- [SciPy `root_scalar`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.root_scalar.html)
+  brackets scalar roots, while [Hypothesis](https://hypothesis.readthedocs.io/) searches input
+  examples. PhaseProbe's contract is a declared qualitative predicate over a simulation plus a
+  replayable pytest artifact.
+- [VS Code checkpoints](https://code.visualstudio.com/docs/agents/run/review-code-edits),
+  [Claude Code checkpoints](https://code.claude.com/docs/en/checkpointing), and Git already undo
+  changes. AgentTX's boundary is a tool-independent, inspectable transaction around an arbitrary
+  coding-agent command; it cannot undo external writes.
+- [Self-Refine](https://arxiv.org/abs/2303.17651),
+  [CRITIC](https://arxiv.org/abs/2305.11738), and
+  [self-consistency](https://arxiv.org/abs/2203.11171) establish substantial prior art. Verifaxis
+  therefore positions typed evidence, matched accounting, and stopping diagnostics as an
+  experimental runtime/benchmark rather than a new correction principle.
+- [vLLM Semantic Router](https://github.com/vllm-project/semantic-router),
+  [RouteLLM](https://github.com/lm-sys/RouteLLM), and
+  [Microsoft MCP Gateway](https://github.com/microsoft/mcp-gateway) cover intent, model economics,
+  proxying, and broad operations. GaugeMesh stays narrow around deterministic selection and
+  fail-closed conservation of declared constraints.
 
 No competitor wording, adoption claim, benchmark number, or endorsement is used here.
