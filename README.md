@@ -76,23 +76,6 @@ proof that every possible bad edit or external side effect is detected.
 [Portfolio engineering evidence](PORTFOLIO_EVIDENCE.md) is a historical record of
 the observations made at the recorded dates, not a current cross-project version inventory.
 
-## Applications
-
-[Concrete Lab — open the browser calculator](https://aliengineering-byte.github.io/concrete-lab/)
-is a separate educational prescribed-strain section-mechanics application.
-Edit inputs, inspect equilibrium and signed layer results, and compare or export
-a study. It provides no code compliance, design capacity, or safety approval.
-The static browser app does not execute GaugeMesh or any other AEB engine.
-See its [source and qualification limits](https://github.com/aliengineering-byte/concrete-lab).
-
-The separate [3D FEM workbench](https://github.com/aliengineering-byte/concrete-lab/blob/main/WORKBENCH.md)
-uses the reusable [AEB FEM engine](https://github.com/aliengineering-byte/aeb-fem):
-tagged Gmsh solids, actual DOLFINx/PETSc elasticity, SLEPc modes, numerical checks,
-and a Blender authoring/result round trip. Its container-backed local service
-uses GaugeMesh's bounded public Run interface. Source and local execution are
-available; public compute is not deployed. This is not nonlinear concrete or
-design-code approval, and it does not change the six infrastructure projects.
-
 ## Public releases and documentation
 
 | Project | Releases | Usage and boundaries |
