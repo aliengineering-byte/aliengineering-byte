@@ -1,102 +1,120 @@
-# AEB Proof
+# AEB
 
-## AI can act. AEB proves what happened.
+### Reliable engines. Inspectable workflows.
 
-```sh
+Route work, control changes, recover from failures, and inspect the result.
+
+**[Choose an engine](#choose-an-engine)** · **[See a real proof workflow](https://aliengineering-byte.github.io/agenttx/)** · **[Engineering notes](PORTFOLIO_EVIDENCE.md)**
+
+AEB builds independently usable tools for developers and researchers working with agents,
+software, and computational workflows. Each engine has a specific responsibility and a
+bounded contract. Use one on its own, or compose the public interfaces a task actually needs.
+
+Domain-specific models and student-facing interfaces belong in separate applications — not
+inside the execution, routing, transaction, or verification engines.
+
+## Choose an engine
+
+| You need to… | Engine | Its responsibility |
+| --- | --- | --- |
+| Route work under explicit constraints and recover bounded multi-step execution | **[GaugeMesh](https://github.com/aliengineering-byte/gaugemesh)** | Capability routing, durable Tasks/Runs, persisted state, and explicit reconciliation |
+| Inspect, accept, or roll back supported coding-agent changes | **[AgentTX](https://github.com/aliengineering-byte/agenttx)** | Repository transactions, declared validation gates, and inspectable proof packs |
+| Reproduce MCP failures and retain a regression | **[ResiliReplay](https://github.com/aliengineering-byte/resilireplay)** | Controlled fault injection, bounded recovery evidence, replay, and generated tests |
+| Evaluate explicit claims before continuing a model workflow | **[VerifAxis](https://github.com/aliengineering-byte/verifaxis)** | Verifier-conditioned recurrence, stopping decisions, and evidence inspection |
+| Preserve a qualitative transition in a user-provided simulation | **[PhaseProbe](https://github.com/aliengineering-byte/phaseprobe)** | Bounded transition discovery, replayable fixtures, and generated regression tests |
+
+**Independent release proof:** [ResiliReplay Action Smoke](https://github.com/aliengineering-byte/resilireplay-action-smoke)
+checks the released ResiliReplay Action from a separate consumer repository. It is evidence
+infrastructure, not another required runtime or a competing application.
+
+## Compose responsibilities, not a mandatory stack
+
+```text
+Application / agent / client
+        |
+        +-- Route and execute ........ GaugeMesh
+        +-- Control repository edits . AgentTX
+        +-- Test failure and recovery  ResiliReplay
+        +-- Evaluate explicit claims . VerifAxis
+        +-- Preserve transitions ..... PhaseProbe
+
+Released artifacts ................. independent downstream checks
+```
+
+These are optional interfaces, not a fixed pipeline. Files, documented CLIs, and supported
+protocols connect components; importing every engine or installing the entire portfolio is
+not required. A specialized application owns its subject-matter rules and user experience.
+
+## Start with something you can inspect
+
+**Changing code with an agent?** Start with the
+[AgentTX workflow and proof gallery](https://aliengineering-byte.github.io/agenttx/).
+The gallery shows declared validators rejecting a test-weakening change and the resulting
+transaction record. It is not a general detector of every unsafe edit.
+
+**Building an MCP integration?** Use the
+[ResiliReplay quickstart](https://github.com/aliengineering-byte/resilireplay)
+to exercise the documented failure/recovery path and inspect its artifacts.
+
+**Need restartable execution?** Read
+[GaugeMesh's public interfaces and limits](https://github.com/aliengineering-byte/gaugemesh)
+and choose a supported Task or Run path.
+
+## A real proof workflow
+
+```bash
 agenttx proof --validator '["npm","test"]' -- codex exec "fix the failing test without weakening it"
 ```
 
 [![Real AgentTX Proof Card: a weakened test was rejected and rolled back](https://aliengineering-byte.github.io/agenttx/agent-cheated/proof-card.svg)](https://aliengineering-byte.github.io/agenttx/agent-cheated/proof.html)
 
-- **Proof-carrying AI changes** — [AgentTX](https://github.com/aliengineering-byte/agenttx) derives acceptance from the command, validators, and bound evidence, then commits or rolls back.
-- **Reproducible MCP failures** — [ResiliReplay](https://github.com/aliengineering-byte/resilireplay) reproduces bounded recovery behavior and turns failures into regression evidence.
-- **Scientific transitions turned into tests** — [PhaseProbe](https://github.com/aliengineering-byte/phaseprobe) preserves bounded qualitative transitions as replayable regression fixtures.
+The [three-case proof gallery](https://aliengineering-byte.github.io/agenttx/)
+shows a declared policy accepting a supported change and rejecting a weakened test.
+Inspect the receipt and declared gates; this is bounded transaction evidence, not
+proof that every possible bad edit or external side effect is detected.
 
-The [three-case Proof Gallery](https://aliengineering-byte.github.io/agenttx/) is regenerated in CI from real commands. AEB tools are independently usable; include only the evidence engines a task actually needs.
+[Portfolio engineering evidence](PORTFOLIO_EVIDENCE.md) is a historical record of
+the observations made at the recorded dates, not a current cross-project version inventory.
 
-## Engines and public distribution
+## Applications
 
-| Need | Start here | Status | Concrete output |
-| --- | --- | --- | --- |
-| Preserve constraints while selecting an agent, model, or MCP route | [GaugeMesh](https://github.com/aliengineering-byte/gaugemesh) | 0.2.2 GitHub Release, GHCR, and MCP Registry developer preview; no crates.io | selected or denied decision and digest-bound conservation evidence |
-| Isolate, inspect, accept, or roll back coding-agent edits | [AgentTX](https://github.com/aliengineering-byte/agenttx) | 0.3.0 on npm, GitHub Releases, and GitHub Actions | proof pack, derived verdict, and rollback or accepted change |
-| Retry a frozen model only while an explicit verifier justifies it | [Verifaxis](https://github.com/aliengineering-byte/verifaxis) | 0.2.0 GitHub research prerelease; PyPI unavailable | claim, verifier decisions, stopping reason, and offline-verifiable evidence |
-| Inject and replay deterministic MCP failures | [ResiliReplay](https://github.com/aliengineering-byte/resilireplay) | 0.7.1 on npm and the Official MCP Registry | recovery evidence and an executable regression |
-| Find a reproducible qualitative simulation transition | [PhaseProbe](https://github.com/aliengineering-byte/phaseprobe) | 0.3.0 released on PyPI | bracketed transition evidence, standalone verification, and generated pytest regression |
-| Check a released Action from outside its source repository | [ResiliReplay Action Smoke](https://github.com/aliengineering-byte/resilireplay-action-smoke) | evidence infrastructure | downstream workflow result and validated artifacts |
+[Concrete Lab — open the browser calculator](https://aliengineering-byte.github.io/concrete-lab/)
+is a separate educational prescribed-strain section-mechanics application.
+Edit inputs, inspect equilibrium and signed layer results, and compare or export
+a study. It provides no code compliance, design capacity, or safety approval.
+The static browser app does not execute GaugeMesh or any other AEB engine.
+See its [source and qualification limits](https://github.com/aliengineering-byte/concrete-lab).
 
-The tools exchange versioned files or invoke released CLIs at process boundaries; none requires the
-rest of the portfolio. The smoke repository is intentionally not a user-facing product.
+## Public releases and documentation
 
-[See the scored front-door decision, positioning records, and public claim/evidence matrix.](PORTFOLIO_EVIDENCE.md)
+| Project | Releases | Usage and boundaries |
+| --- | --- | --- |
+| GaugeMesh | [GitHub releases](https://github.com/aliengineering-byte/gaugemesh/releases) | [README](https://github.com/aliengineering-byte/gaugemesh#readme) |
+| AgentTX | [GitHub releases](https://github.com/aliengineering-byte/agenttx/releases) | [README](https://github.com/aliengineering-byte/agenttx#readme) |
+| ResiliReplay | [GitHub releases](https://github.com/aliengineering-byte/resilireplay/releases) | [README](https://github.com/aliengineering-byte/resilireplay#readme) |
+| VerifAxis | [GitHub releases](https://github.com/aliengineering-byte/verifaxis/releases) | [README](https://github.com/aliengineering-byte/verifaxis#readme) |
+| PhaseProbe | [GitHub releases](https://github.com/aliengineering-byte/phaseprobe/releases) | [README](https://github.com/aliengineering-byte/phaseprobe#readme) |
 
-## Public install paths
+Use the chosen release's exact installation instructions, supported platform, and versioned
+contract. Availability of an artifact does not imply production readiness or support for
+an untested platform. Preview and research status remain visible in the project releases.
 
-Every command below resolves an immutable public version. Registry publication is stated explicitly;
-GitHub release assets are used where registry ownership is not configured.
+## What the evidence means
 
-```console
-# AgentTX 0.3.0 from npm
-npx --yes agenttx@0.3.0 proof -- your-agent-command
+Execution, artifact integrity, policy acceptance, and independent numerical checks answer
+different questions. A successful run is not automatically a correct model or a safe design.
 
-# ResiliReplay 0.7.1 from npm
-npx --yes resilireplay@0.7.1 mcp demo --keep
+AgentTX is not an operating-system sandbox and cannot undo arbitrary external side effects.
+GaugeMesh's recovery and cancellation guarantees are bounded by its documented execution
+surface. Hashes and unsigned receipts are not producer authentication. VerifAxis depends on
+the scope and quality of its verifiers; PhaseProbe depends on the supplied observable and
+predicate. Exercise effectful targets only with explicit authorization.
 
-# PhaseProbe 0.3.0 from PyPI
-python -m pip install "phaseprobe==0.3.0" "pytest==8.4.1"
-phaseprobe scan --example logistic
-phaseprobe generate-test .phaseprobe/runs/<run-id>/replay.json
-phaseprobe verify-evidence tests/generated/logistic_map-pytest-evidence.json
-python -m pytest -q tests/generated
+## Help improve an engine
 
-# Verifaxis 0.2.0 from its public GitHub release wheel (not PyPI)
-python -m pip install "https://github.com/aliengineering-byte/verifaxis/releases/download/v0.2.0/verifaxis-0.2.0-py3-none-any.whl"
-verifaxis demo --evidence-output demo-evidence.json
-verifaxis verify-evidence demo-evidence.json
+Report a reproducible failure, unclear quickstart, or real compatibility result in the
+relevant repository. Share only sanitized examples — never credentials, private prompts,
+research data, or proprietary files.
 
-# GaugeMesh 0.2.2 immutable GHCR digest comes from its Registry/release metadata
-docker run --rm -i ghcr.io/aliengineering-byte/gaugemesh@sha256:537c7e37a4fd97d216f5f8de655363e0647213a59a1d37063899fc843f8b8999 mcp-stdio
-```
-
-Checksums and release notes: [GaugeMesh 0.2.2](https://github.com/aliengineering-byte/gaugemesh/releases/tag/v0.2.2),
-[AgentTX 0.3.0](https://github.com/aliengineering-byte/agenttx/releases/tag/v0.3.0),
-[Verifaxis 0.2.0](https://github.com/aliengineering-byte/verifaxis/releases/tag/v0.2.0), and
-[PhaseProbe 0.3.0](https://github.com/aliengineering-byte/phaseprobe/releases/tag/v0.3.0).
-
-## Five-minute flagship proof
-
-With Node.js 22 or 24:
-
-```console
-npx --yes resilireplay@0.7.1 mcp demo --keep
-```
-
-The credential-free local demo runs a clean MCP call, reproduces one deterministic failure, verifies
-bounded recovery with no duplicate effect, generates and executes a regression, and keeps the
-evidence under `.resilireplay/demo/`. See the
-[five-minute MCP guide](https://github.com/aliengineering-byte/resilireplay/blob/main/docs/mcp-reliability/FIVE_MINUTE_MCP_TEST.md)
-and the
-[independent Action smoke](https://github.com/aliengineering-byte/resilireplay-action-smoke/actions/workflows/resilireplay.yml).
-
-## Two honest tracks
-
-- **Agent reliability:** GaugeMesh routes while preserving declared constraints; AgentTX contains
-  repository edits; Verifaxis evaluates explicit claims; ResiliReplay tests MCP recovery. Use only
-  the stages the task actually needs.
-- **Scientific reliability:** PhaseProbe brackets a qualitative transition and exports a pytest
-  regression. Verifaxis or ResiliReplay belongs here only when a real verifier or failure-replay
-  boundary is present.
-
-## Current boundaries
-
-- These tools provide evidence for their documented scopes; they are not security certifications.
-- AgentTX does not sandbox a child process or reverse external side effects.
-- GaugeMesh is a GitHub Release/GHCR/MCP Registry developer preview and is not on crates.io. Verifaxis remains a
-  research prototype distributed as a GitHub prerelease wheel, not through PyPI.
-- AgentTX 0.3.0 is available from npm and GitHub; its Action verifies proof packs but is not an OS sandbox.
-- PhaseProbe requires the user to define a scientifically meaningful observable and predicate.
-- ResiliReplay requires explicit ownership and approval before exercising remote or effectful tools.
-
-Found a reproducibility failure, confusing quickstart, or missing integration? Open an issue in the
-affected repository. Successful integrations can be reported through each project's adoption or
-compatibility issue path. No AEB tool sends telemetry or stars a repository on a user's behalf.
+Useful tools earn support through use. Feedback and repository stars are voluntary; they
+are never required to install, run, or verify a result.
